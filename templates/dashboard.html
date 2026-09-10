@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+    <h2>Welcome, {{ username }}!</h2>
+    <p class="lead">Your assigned role: <span class="badge bg-info text-dark">{{ role }}</span></p>
+    <hr>
+    <p>Hệ thống thử nghiệm tấn công SQL Injection đã sẵn sàng. Hãy chọn chức năng từ menu phía trên để thực hiện các bài Lab Demo.</p>
+</div>
+{% endblock %}

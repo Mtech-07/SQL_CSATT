@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-danger text-white">
+        <h4>Demo 2: Data Modification (Data Tampering)</h4>
+    </div>
+    <div class="card-body">
+        {% if message %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST" class="row g-3 mb-4">
+            <div class="col-md-2">
+                <label class="form-label">Record ID</label>
+                <input type="text" name="id" class="form-control" value="1" required>
+            </div>
+            <div class="col-md-8">
+                <label class="form-label">New Description</label>
+                <input type="text" name="description" class="form-control" required>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-danger w-100">Update Record</button>
+            </div>
+        </form>
+
+        {% if query %}
+        <div class="p-2 bg-dark text-warning rounded mb-3">
+            <small><strong>SQL Query Executed:</strong><br><code>{{ query }}</code></small>
+        </div>
+        {% endif %}
+
+        <h5>Current Database State:</h5>
+        <table class="table table-bordered">
+            <thead class="table-secondary">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                <tr>
+                    <td>{{ r['id'] }}</td>
+                    <td>{{ r['name'] }}</td>
+                    <td>{{ r['description'] }}</td>
+                    <td>{{ r['owner'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

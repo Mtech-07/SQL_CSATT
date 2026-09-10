@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-warning text-dark">
+        <h4>Demo 3: Data Theft (UNION-based SQLi)</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST" class="row g-3 mb-3">
+            <div class="col-auto">
+                <input type="text" name="search" class="form-control" value="{{ search_term }}" placeholder="Search record..." style="width: 400px;">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-warning">Search</button>
+            </div>
+        </form>
+
+        {% if query %}
+        <div class="p-2 bg-dark text-warning rounded mb-3">
+            <small><strong>SQL Query Executed:</strong><br><code>{{ query }}</code></small>
+        </div>
+        {% endif %}
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Record Name</th>
+                    <th>Description</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="4" class="text-center">No data found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
